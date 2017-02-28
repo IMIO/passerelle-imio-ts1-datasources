@@ -2,7 +2,7 @@ Source: passerelle-imio-ts1-datasources
 Maintainer: Christophe Boulanger <christophe.boulanger@imio.be>
 Section: python
 Priority: optional
-Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 9)
+Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 9), python-django
 Standards-Version: 3.9.1
 
 Package: python-passerelle-imio-ts1-datasources
