@@ -88,6 +88,9 @@ class ImioTs1Datasources(BaseResource):
     def get_connector_slug(cls):
         return 'imio-ts1-datasources'
 
+    def get_motivation_terms(self):
+        return MotivationTerm.objects.all()
+
     @classmethod
     def create_or_update_and_get(self, model_class, data):
         get_or_create_kwargs = {model_class._meta.pk.name: data.pop(model_class._meta.pk.name)

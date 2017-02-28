@@ -12,6 +12,18 @@
     <br />
 {% endfor %}  
 </div>
+
+<table class="main">
+<thead>
+<tr><th>{% trans 'Label' %}</th><th>{% trans 'Price' %}</th><th>{% trans 'Description' %}</th></tr>
+</thead>
+<tbody>
+{% for motivation in object.get_motivation_terms %}
+<tr><td>{{motivation.text}}</td><td>{{motivation.price}}</td><td>{{motivation.description}}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
 <p>
   <!--csv-new-query-->
 <a class="icon-plus button" href="{% url 'motivationterm-add' connector_slug=object.slug %}">{% trans 'Add new record' %}</a>
