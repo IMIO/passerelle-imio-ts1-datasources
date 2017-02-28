@@ -3,7 +3,6 @@ from django.views.generic import View, CreateView
 from django.views.generic.detail import SingleObjectMixin
 
 from .models import ImioTs1Datasources, MotivationTerm
-from .forms import MotivationTermForm
 
 
 class DatasourcesView(View, SingleObjectMixin):
