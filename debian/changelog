@@ -1,0 +1,5 @@
+passerelle-imio-ts1-datasources (0-0) unstable; urgency=low
+
+  * created from a stdeb 0.8.2 template.
+
+ -- Frederic Peters <fpeters@entrouvert.com>  Sat, 16 Jan 2016 17:35:53 +0100
