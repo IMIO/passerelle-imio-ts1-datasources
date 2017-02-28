@@ -3,16 +3,7 @@
 
 {% block content %}
 {% if object.description %}{{object.description|linebreaks}}{% endif %}
-{{object.label}}
-<br />
-
-<div>
-{%for element in object.get_lst_motivations_terms%}
-    {{ element.text }} - {{ element.price }} - {{ element.id }} - {{ element.description }}
-    <br />
-{% endfor %}  
-</div>
-
+<h3>{%trans 'Motivations list' %}</h3>
 <table class="main">
 <thead>
 <tr><th>{% trans 'Label' %}</th><th>{% trans 'Price' %}</th><th>{% trans 'Description' %}</th><th>&nbsp;</th></tr>
@@ -20,7 +11,7 @@
 <tbody>
 {% for motivation in object.get_motivation_terms %}
 <tr><td>{{motivation.text}}</td><td>{{motivation.price}}</td><td>{{motivation.description}}</td>
-    <td><a rel="popup" href="{% url 'motivationterm-delete' pk=motivation.id connector_slug=object.slug %}">X</a></td>
+    <td><a rel="popup" href="{% url 'motivationterm-delete' pk=motivation.id connector_slug=object.slug %}" class="icon-remove-sign"></a></td>
 </tr>
 {% endfor %}
 </tbody>
