@@ -14,11 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import unicodedata
-# import urlparse
-import requests
-
-# from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -27,9 +22,6 @@ from passerelle.utils.api import endpoint
 
 
 class MotivationTerm(models.Model):
-    # resource = models.ForeignKey('ImioTs1Datasources')
-    # strid = models.CharField(max_length=100)
-    # slug = models.SlugField(_('Name (slug)'))
     text = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
@@ -72,9 +64,6 @@ class ImioTs1Datasources(BaseResource):
     class Meta:
         verbose_name = _('TS1 datasources manage Service')
 
-    @classmethod
-    def get_lst_motivations_terms(cls):
-        return cls.lst_motivations_terms
 
     @classmethod
     def get_verbose_name(cls):
@@ -91,38 +80,11 @@ class ImioTs1Datasources(BaseResource):
     def get_motivation_terms(self):
         return MotivationTerm.objects.all()
 
-    @classmethod
-    def create_or_update_and_get(self, model_class, data):
-        get_or_create_kwargs = {model_class._meta.pk.name: data.pop(model_class._meta.pk.name)
-                                }
-        try:
-            # get
-            instance = model_class.objects.get(**get_or_create_kwargs)
-        except model_class.DoesNotExist:
-            # create
-            instance = model_class(**get_or_create_kwargs)
-        # update (or finish creating)
-        for key, value in data.items():
-            field = model_class._meta.get_field(key)
-            if not field:
-                continue
-            if isinstance(field, models.ManyToManyField):
-                # can't add m2m until parent is saved
-                continue
-            elif isinstance(field, models.ForeignKey) and hasattr(value, 'items'):
-                rel_instance = self.create_or_update_and_get(field.rel.to, value)
-                setattr(instance, key, rel_instance)
-            else:
-                setattr(instance, key, value)
-        instance.save()
-        # now add the m2m relations
-        for field in model_class._meta.many_to_many:
-            if field.name in data and hasattr(data[field.name], 'append'):
-                for obj in data[field.name]:
-                    rel_instance = self.create_or_update_and_get(field.rel.to, obj)
-                    getattr(instance, field.name).add(rel_instance)
-        return instance
-
     @endpoint()
-    def voies(self, request, q=None, **kwargs):
-        pass
+    def motivationterms(self, request, **kwargs):
+        motivation_terms = []
+        for motivation in self.get_motivation_terms():
+            motivation_terms.append({"id": motivation.id,
+                                     "text": motivation.text,
+                                     "price": str(motivation.price)})
+        return {"data": motivation_terms}
