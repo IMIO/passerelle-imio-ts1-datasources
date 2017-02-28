@@ -33,6 +33,19 @@ class MotivationTerm(models.Model):
         return super(MotivationTerm, self).save(*args, **kwargs)
 
 
+class DestinationTerm(models.Model):
+    text = models.CharField(max_length=100)
+    price = models.DecimalField(decimal_places=2, max_digits=6)
+    description = models.TextField(max_length=500)
+    paymentrequired = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['text']
+
+    def save(self, *args, **kwargs):
+        return super(DestinationTerm, self).save(*args, **kwargs)
+
+
 class ImioTs1Datasources(BaseResource):
 
     lst_motivations_terms = [{'text': u'mon motif', 'price': 0.0, 'id': 'mon-motif', 'description': u''},
@@ -80,6 +93,9 @@ class ImioTs1Datasources(BaseResource):
     def get_motivation_terms(self):
         return MotivationTerm.objects.all()
 
+    def get_destination_terms(self):
+        return DestinationTerm.objects.all()
+
     @endpoint()
     def motivationterms(self, request, **kwargs):
         motivation_terms = []
@@ -88,3 +104,13 @@ class ImioTs1Datasources(BaseResource):
                                      "text": motivation.text,
                                      "price": str(motivation.price)})
         return {"data": motivation_terms}
+
+    @endpoint()
+    def destinationterms(self, request, **kwargs):
+        destination_terms = []
+        for destination in self.get_destination_terms():
+            destination_terms.append({"id": destination.id,
+                                     "text": destination.text,
+                                     "price": str(destination.price),
+                                     "paymentrequired" : str(destination.paymentrequired)})
+        return {"data": destination_terms}
