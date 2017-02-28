@@ -15,11 +15,13 @@
 
 <table class="main">
 <thead>
-<tr><th>{% trans 'Label' %}</th><th>{% trans 'Price' %}</th><th>{% trans 'Description' %}</th></tr>
+<tr><th>{% trans 'Label' %}</th><th>{% trans 'Price' %}</th><th>{% trans 'Description' %}</th><th>&nbsp;</th></tr>
 </thead>
 <tbody>
 {% for motivation in object.get_motivation_terms %}
-<tr><td>{{motivation.text}}</td><td>{{motivation.price}}</td><td>{{motivation.description}}</td></tr>
+<tr><td>{{motivation.text}}</td><td>{{motivation.price}}</td><td>{{motivation.description}}</td>
+    <td><a rel="popup" href="{% url 'motivationterm-delete' pk=motivation.id connector_slug=object.slug %}">X</a></td>
+</tr>
 {% endfor %}
 </tbody>
 </table>
