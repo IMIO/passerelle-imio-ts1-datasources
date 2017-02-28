@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -24,19 +24,17 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'TS1 datasources manage Service',
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='MotivationTerm',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('text', models.CharField(max_length=100)),
-                ('price', models.CharField(max_length=4)),
+                ('price', models.DecimalField(max_digits=6, decimal_places=2)),
                 ('description', models.TextField(max_length=500)),
             ],
             options={
                 'ordering': ['text'],
             },
-            bases=(models.Model,),
         ),
     ]
