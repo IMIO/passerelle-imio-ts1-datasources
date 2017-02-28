@@ -31,7 +31,7 @@ class MotivationTerm(models.Model):
     # strid = models.CharField(max_length=100)
     # slug = models.SlugField(_('Name (slug)'))
     text = models.CharField(max_length=100)
-    price = models.DecimalField(max_length=4)
+    price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
 
     class Meta:
