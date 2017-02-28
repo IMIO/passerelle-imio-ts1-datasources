@@ -31,14 +31,13 @@ class MotivationTerm(models.Model):
     # strid = models.CharField(max_length=100)
     # slug = models.SlugField(_('Name (slug)'))
     text = models.CharField(max_length=100)
-    price = models.CharField(max_length=4)
+    price = models.DecimalField(max_length=4)
     description = models.TextField(max_length=500)
 
     class Meta:
         ordering = ['text']
 
     def save(self, *args, **kwargs):
-        import ipdb;ipdb.set_trace()
         return super(MotivationTerm, self).save(*args, **kwargs)
 
 
