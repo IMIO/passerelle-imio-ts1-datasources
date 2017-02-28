@@ -1,0 +1,58 @@
+# French translation of passerelle-imio-tax-compute
+# Copyright (C) 2016 Entr'ouvert
+# This file is distributed under the same license as the
+# passerelle-imio-tax-compute package.
+# Frédéric Péters <fpeters@entrouvert.com>, 2016
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: passerelle-imio-ts1-datasources 0\n"
+"POT-Creation-Date: 2017-01-16 17:28+0100\n"
+"PO-Revision-Date: 2017-01-16 17:28+0100\n"
+"Last-Translator: Frédéric Péters <fpeters@entrouvert.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:31
+msgid "Label"
+msgstr "Libellé"
+
+#: models.py:32
+msgid "help label"
+msgstr ""
+
+#: models.py:35
+msgid "Price"
+msgstr ""
+
+#: models.py:36
+msgid "help price"
+msgstr ""
+
+#: models.py:39
+msgid "Description"
+msgstr ""
+
+#: models.py:40
+msgid "help description"
+msgstr ""
+
+#: models.py:42
+msgid "Datasources manager"
+msgstr ""
+
+#: models.py:45
+msgid "TS1 datasources manage Service"
+msgstr ""
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:7
+msgid "Listing streets:"
+msgstr ""
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:15
+msgid "Accessing the listings is open."
+msgstr ""

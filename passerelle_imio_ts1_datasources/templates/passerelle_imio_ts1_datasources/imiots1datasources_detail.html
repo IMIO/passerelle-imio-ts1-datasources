@@ -1,0 +1,20 @@
+{% extends "passerelle/manage/service_view.html" %}
+{% load i18n passerelle %}
+
+{% block content %}
+{% if object.description %}{{object.description|linebreaks}}{% endif %}
+{{object.label}}
+<br />
+
+<div>
+{%for element in object.get_lst_motivations_terms%}
+    {{ element.text }} - {{ element.price }} - {{ element.id }} - {{ element.description }}
+    <br />
+{% endfor %}  
+</div>
+<p>
+  <!--csv-new-query-->
+<a class="icon-plus button" href="{% url 'motivationterm-add' connector_slug=object.slug %}">{% trans 'Add new record' %}</a>
+</p>
+
+{% endblock %}
