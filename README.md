@@ -31,3 +31,9 @@ Usage in w.c.s.
 
  - configure a list field with a jsonp datasource, with the "/voies/" endpoint
    URL as value.
+
+
+Usage of 'import_json' destination and motivation in command line
+-----------------------------------------------------------------
+with user passerelle :
+- sudo -u passerelle passerelle-manage tenant_command import_site -d local-passerelle.example.net [JSON_FILE]
