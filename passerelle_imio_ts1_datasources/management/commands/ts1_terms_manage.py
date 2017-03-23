@@ -32,6 +32,7 @@ class Command(BaseCommand):
             data = json.load(data_file)
             for motivationterm in data:
                 mt_object = MotivationTerm(text=motivationterm["text"],
+                                           slug=motivationterm["slug"],
                                            price=motivationterm["price"],
                                            description=motivationterm["description"])
                 mt_object.save()
@@ -42,6 +43,7 @@ class Command(BaseCommand):
             data = json.load(data_file)
             for destinationterm in data:
                 mt_object = DestinationTerm(text=destinationterm["text"],
+                                            slug=destinationterm["slug"],
                                             price=destinationterm["price"],
                                             description=destinationterm["description"],
                                             paymentrequired=destinationterm["paymentRequired"])
