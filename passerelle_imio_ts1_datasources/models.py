@@ -25,6 +25,7 @@ from passerelle.utils.api import endpoint
 
 class MotivationTerm(models.Model):
     text = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
 
@@ -37,6 +38,7 @@ class MotivationTerm(models.Model):
     def export_json(self):
         return {
             'text': self.text,
+            'slug': self.slug,
             'price': str(self.price),
             'description': self.description
         }
@@ -50,6 +52,7 @@ class MotivationTerm(models.Model):
 
 class DestinationTerm(models.Model):
     text = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
     paymentrequired = models.BooleanField(default=True)
@@ -63,6 +66,7 @@ class DestinationTerm(models.Model):
     def export_json(self):
         return {
             'text': self.text,
+            'slug': self.slug,
             'price': str(self.price),
             'description': self.description,
             'paymentrequired': self.paymentrequired,
@@ -155,7 +159,7 @@ class ImioTs1Datasources(BaseResource):
     def motivationterms(self, request, **kwargs):
         motivation_terms = []
         for motivation in self.get_motivation_terms():
-            motivation_terms.append({"id": motivation.id,
+            motivation_terms.append({"id": motivation.slug,
                                      "text": motivation.text,
                                      "price": str(motivation.price)})
         return {"data": motivation_terms}
@@ -164,7 +168,7 @@ class ImioTs1Datasources(BaseResource):
     def destinationterms(self, request, **kwargs):
         destination_terms = []
         for destination in self.get_destination_terms():
-            destination_terms.append({"id": destination.id,
+            destination_terms.append({"id": destination.slug,
                                      "text": destination.text,
                                      "price": str(destination.price),
                                      "paymentrequired" : str(destination.paymentrequired)})
