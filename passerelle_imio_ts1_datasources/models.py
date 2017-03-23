@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import decimal
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -32,6 +34,19 @@ class MotivationTerm(models.Model):
     def save(self, *args, **kwargs):
         return super(MotivationTerm, self).save(*args, **kwargs)
 
+    def export_json(self):
+        return {
+            'text': self.text,
+            'price': str(self.price),
+            'description': self.description
+        }
+
+    @classmethod
+    def import_json(cls, data):
+        data['price'] = decimal.Decimal(data['price'])
+        return cls(**data)
+
+
 
 class DestinationTerm(models.Model):
     text = models.CharField(max_length=100)
@@ -44,6 +59,19 @@ class DestinationTerm(models.Model):
 
     def save(self, *args, **kwargs):
         return super(DestinationTerm, self).save(*args, **kwargs)
+
+    def export_json(self):
+        return {
+            'text': self.text,
+            'price': str(self.price),
+            'description': self.description,
+            'paymentrequired': self.paymentrequired,
+        }
+
+    @classmethod
+    def import_json(cls, data):
+        data['price'] = decimal.Decimal(data['price'])
+        return cls(**data)
 
 
 class ImioTs1Datasources(BaseResource):
@@ -95,6 +123,33 @@ class ImioTs1Datasources(BaseResource):
 
     def get_destination_terms(self):
         return DestinationTerm.objects.all()
+
+    def export_json(self):
+        d = super(ImioTs1Datasources, self).export_json()
+        d['motivations'] = [x.export_json() for x in MotivationTerm.objects.all()]
+        d['destinations'] = [x.export_json() for x in DestinationTerm.objects.all()]
+        return d
+
+    @classmethod
+    def import_json_real(cls, overwrite, instance, d, **kwargs):
+        motivations = d.pop('motivations', [])
+        destinations = d.pop('destinations', [])
+        instance = super(ImioTs1Datasources, cls).import_json_real(overwrite, instance, d, **kwargs)
+        if instance and overwrite:
+            MotivationTerm.objects.all().delete()
+            DestinationTerm.objects.all().delete()
+
+        new = []
+        for motivation in motivations:
+            new.append(MotivationTerm.import_json(motivation))
+        MotivationTerm.objects.bulk_create(new)
+
+        new = []
+        for destination in destinations:
+            new.append(DestinationTerm.import_json(destination))
+        DestinationTerm.objects.bulk_create(new)
+
+        return instance
 
     @endpoint()
     def motivationterms(self, request, **kwargs):
