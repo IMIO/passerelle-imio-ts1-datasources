@@ -6,6 +6,8 @@ Installation
 
  - add to Passerelle installed apps settings:
    INSTALLED_APPS += ('passerelle_imio_ts1_datasources',)
+   TENANT_APPS += ('passerelle_imio_ts1_datasources',)
+
 
  - enable module:
    PASSERELLE_APP_PASSERELLE_IMIO_TS1_DATASOURCES_ENABLED = True
