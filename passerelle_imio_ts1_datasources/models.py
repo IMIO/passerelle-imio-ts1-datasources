@@ -128,6 +128,7 @@ class ImioTs1Datasources(BaseResource):
     def get_destination_terms(self):
         return DestinationTerm.objects.all()
 
+<<<<<<< Updated upstream
     def export_json(self):
         d = super(ImioTs1Datasources, self).export_json()
         d['motivations'] = [x.export_json() for x in MotivationTerm.objects.all()]
@@ -154,6 +155,10 @@ class ImioTs1Datasources(BaseResource):
         DestinationTerm.objects.bulk_create(new)
 
         return instance
+=======
+    def motivationterms_import(self, request, **kwargs):
+        import pdb;pdb.set_trace()
+>>>>>>> Stashed changes
 
     @endpoint()
     def motivationterms(self, request, **kwargs):
