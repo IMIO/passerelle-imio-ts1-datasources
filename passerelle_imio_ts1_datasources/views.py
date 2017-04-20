@@ -1,4 +1,4 @@
-from django.views.generic import View, CreateView, DeleteView
+from django.views.generic import View, CreateView, DeleteView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.core.urlresolvers import reverse
 
@@ -31,6 +31,17 @@ class MotivationtermDeleteView(DeleteView):
                         'slug': connector.slug})
 
 
+class MotivationtermUpdateView(UpdateView):
+    model = MotivationTerm
+    fields = '__all__'
+
+    def get_success_url(self):
+        connector = ImioTs1Datasources.objects.get(slug=self.kwargs['connector_slug'])
+        return reverse('view-connector',
+                kwargs={'connector': connector.get_connector_slug(),
+                        'slug': connector.slug})
+
+
 class DestinationtermAddView(CreateView):
     model = DestinationTerm
     fields = '__all__'
@@ -45,6 +56,17 @@ class DestinationtermAddView(CreateView):
 
 class DestinationtermDeleteView(DeleteView):
     model = DestinationTerm
+
+    def get_success_url(self):
+        connector = ImioTs1Datasources.objects.get(slug=self.kwargs['connector_slug'])
+        return reverse('view-connector',
+                kwargs={'connector': connector.get_connector_slug(),
+                        'slug': connector.slug})
+
+
+class DestinationtermUpdateView(UpdateView):
+    model = DestinationTerm
+    fields = '__all__'
 
     def get_success_url(self):
         connector = ImioTs1Datasources.objects.get(slug=self.kwargs['connector_slug'])
