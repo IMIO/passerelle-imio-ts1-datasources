@@ -17,6 +17,7 @@
 import decimal
 
 from django.db import models
+from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
 from passerelle.base.models import BaseResource
@@ -24,7 +25,12 @@ from passerelle.utils.api import endpoint
 
 
 class MotivationTerm(models.Model):
-    text = models.CharField(max_length=100)
+    no_comma_validator = [
+    RegexValidator(regex=r'^((?!,).)*$',
+                   message=_("Comma is not allowed in motivations title (NO \",\")."),
+                   code='invalid_text')
+    ]
+    text = models.CharField(max_length=100, validators=no_comma_validator)
     slug = models.CharField(max_length=100)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
