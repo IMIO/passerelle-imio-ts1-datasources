@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=50)),
-                ('slug', models.SlugField()),
+                ('slug', models.SlugField(unique=True)),
                 ('description', models.TextField()),
                 ('log_level', models.CharField(default=b'NOTSET', max_length=10, verbose_name='Log Level', choices=[(b'NOTSET', b'NOTSET'), (b'DEBUG', b'DEBUG'), (b'INFO', b'INFO'), (b'WARNING', b'WARNING'), (b'ERROR', b'ERROR'), (b'CRITICAL', b'CRITICAL'), (b'FATAL', b'FATAL')])),
                 ('users', models.ManyToManyField(to='base.ApiUser', blank=True)),
