@@ -18,6 +18,7 @@ import decimal
 
 from django.db import models
 from django.core.validators import RegexValidator
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from passerelle.base.models import BaseResource
@@ -31,7 +32,7 @@ class MotivationTerm(models.Model):
                    code='invalid_text')
     ]
     text = models.CharField(max_length=100, validators=no_comma_validator)
-    slug = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, editable=False)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
 
@@ -39,6 +40,7 @@ class MotivationTerm(models.Model):
         ordering = ['text']
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.text)
         return super(MotivationTerm, self).save(*args, **kwargs)
 
     def export_json(self):
@@ -58,7 +60,7 @@ class MotivationTerm(models.Model):
 
 class DestinationTerm(models.Model):
     text = models.CharField(max_length=100)
-    slug = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, editable=False)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     description = models.TextField(max_length=500)
     paymentrequired = models.BooleanField(default=True)
@@ -67,6 +69,7 @@ class DestinationTerm(models.Model):
         ordering = ['text']
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.text)
         return super(DestinationTerm, self).save(*args, **kwargs)
 
     def export_json(self):
