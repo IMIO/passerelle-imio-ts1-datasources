@@ -8,7 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: passerelle-imio-ts1-datasources 0\n"
-"POT-Creation-Date: 2017-01-16 17:28+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-18 09:46+0200\n"
 "PO-Revision-Date: 2017-01-16 17:28+0100\n"
 "Last-Translator: Frédéric Péters <fpeters@entrouvert.com>\n"
 "Language: fr\n"
@@ -18,41 +19,83 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: models.py:31
-msgid "Label"
-msgstr "Libellé"
+msgid "Comma is not allowed in motivations title (NO \",\")."
+msgstr "La virgule n'est pas authorisee dans l'intitulé"
 
-#: models.py:32
-msgid "help label"
-msgstr ""
-
-#: models.py:35
-msgid "Price"
-msgstr ""
-
-#: models.py:36
-msgid "help price"
-msgstr ""
-
-#: models.py:39
-msgid "Description"
-msgstr ""
-
-#: models.py:40
-msgid "help description"
-msgstr ""
-
-#: models.py:42
+#: models.py:116
 msgid "Datasources manager"
 msgstr ""
 
-#: models.py:45
+#: models.py:119
 msgid "TS1 datasources manage Service"
 msgstr ""
 
-#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:7
-msgid "Listing streets:"
+#: templates/passerelle_imio_ts1_datasources/destinationterm_confirm_delete.html:5
+msgid "Removing Destinationterm"
+msgstr "Supprimer la destination"
+
+#: templates/passerelle_imio_ts1_datasources/destinationterm_confirm_delete.html:12
+#: templates/passerelle_imio_ts1_datasources/motivationterm_confirm_delete.html:12
+msgid "Confirm Deletion"
+msgstr "Confirmer la suppression"
+
+#: templates/passerelle_imio_ts1_datasources/destinationterm_confirm_delete.html:13
+#: templates/passerelle_imio_ts1_datasources/destinationterm_form.html:26
+#: templates/passerelle_imio_ts1_datasources/motivationterm_confirm_delete.html:13
+#: templates/passerelle_imio_ts1_datasources/motivationterm_form.html:27
+#: templates/passerelle_imio_ts1_datasources/motivationterm_form.html:28
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/passerelle_imio_ts1_datasources/destinationterm_form.html:11
+#: templates/passerelle_imio_ts1_datasources/motivationterm_form.html:11
+msgid "Add Query"
 msgstr ""
 
-#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:15
-msgid "Accessing the listings is open."
-msgstr ""
+#: templates/passerelle_imio_ts1_datasources/destinationterm_form.html:25
+#: templates/passerelle_imio_ts1_datasources/motivationterm_form.html:26
+msgid "Save"
+msgstr "Sauvegarde"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:6
+msgid "Destinations list"
+msgstr "Liste des destinations (mode de réception)"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:9
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:28
+msgid "Label"
+msgstr "Libellé"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:9
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:28
+msgid "Price"
+msgstr "Prix"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:9
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:28
+msgid "Description"
+msgstr "Description"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:9
+msgid "Payment required"
+msgstr "Paiement requis"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:21
+msgid "Add new destination"
+msgstr "Ajouter des nouvelles destinations (mode de réception)"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:25
+msgid "Motivations list"
+msgstr "Liste des motifs"
+
+#: templates/passerelle_imio_ts1_datasources/imiots1datasources_detail.html:42
+msgid "Add new motivation"
+msgstr "Ajouter un nouveau motif"
+
+#: templates/passerelle_imio_ts1_datasources/motivationterm_confirm_delete.html:5
+msgid "Removing Motivationterm"
+msgstr "Supprimer le motif"
+
+#: templates/passerelle_imio_ts1_datasources/motivationterm_form.html:17
+msgid "SLUG (readonly item id)"
+msgstr "SLUG (Identifiant, en lecture seule, de l'élément)"
