@@ -20,7 +20,7 @@ msgstr ""
 
 #: models.py:31
 msgid "Comma is not allowed in motivations title (NO \",\")."
-msgstr "La virgule n'est pas authorisee dans l'intitulé"
+msgstr "La virgule n'est pas autorisée dans l'intitulé"
 
 #: models.py:116
 msgid "Datasources manager"
