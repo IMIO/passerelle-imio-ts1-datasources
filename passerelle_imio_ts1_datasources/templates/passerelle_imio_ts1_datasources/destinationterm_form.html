@@ -14,9 +14,10 @@
 
 {% block content %}
 
-
+{%if object.slug %}
 <p style="color:red">{% trans 'SLUG (readonly item id)'%}&nbsp;:&nbsp; 
 <b>{{object.slug}}</b></p><hr />
+{%endif%}
 <p>
 <form method="post" enctype="multipart/form-data">
    <div id="form-content">
