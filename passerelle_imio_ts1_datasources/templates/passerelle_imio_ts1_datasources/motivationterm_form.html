@@ -14,7 +14,9 @@
 
 {% block content %}
 
-
+<p style="color:red">{% trans 'SLUG (readonly item id)'%}&nbsp;:&nbsp; 
+<b>{{object.slug}}</b></p><hr />
+<p>
 <form method="post" enctype="multipart/form-data">
    <div id="form-content">
      {% csrf_token %}
@@ -27,7 +29,8 @@
      <!--a class="cancel" href="{{ resource.get_absolute_url }}">{% trans 'Cancel' %}</a-->
    </div>
    {% endblock %}
- </form>
+</form>
+</p>
 
 
 {% endblock %}
