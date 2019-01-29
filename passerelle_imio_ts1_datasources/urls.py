@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from .views import (DatasourcesView,
 		    MotivationtermAddView,
 		    MotivationtermDeleteView,
@@ -8,11 +8,11 @@ from .views import (DatasourcesView,
 		    DestinationtermUpdateView)
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^(?P<slug>[\w,-]+)/data$', DatasourcesView.as_view(), name='DatasourcesView-data'),
-)
+]
 
-management_urlpatterns = patterns('',
+management_urlpatterns = [
     url(r'^(?P<connector_slug>[\w,-]+)/motivationterm/add/',
 	MotivationtermAddView.as_view(), name='motivationterm-add'),
     url(r'^(?P<connector_slug>[\w,-]+)/motivationterm/(?P<pk>[\w,-]+)/delete/',
@@ -25,4 +25,4 @@ management_urlpatterns = patterns('',
 	DestinationtermDeleteView.as_view(), name='destinationterm-delete'),
     url(r'^(?P<connector_slug>[\w,-]+)/destinationterm/(?P<pk>[\w,-]+)/update/',
 	DestinationtermUpdateView.as_view(), name='destinationterm-update')	
-)
+]
