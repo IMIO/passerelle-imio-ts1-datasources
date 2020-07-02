@@ -22,7 +22,7 @@ class eo_sdist(sdist):
         if os.path.exists('VERSION'):
             os.remove('VERSION')
         version = get_version()
-        version_file = open('VERSION', 'w')
+        version_file = open('VERSION', 'wb')
         version_file.write(version)
         version_file.close()
         sdist.run(self)
