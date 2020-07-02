@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#  ceci n'est pas un test
+
+
 import glob
 import os
 import re
