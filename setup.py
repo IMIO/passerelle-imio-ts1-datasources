@@ -31,16 +31,14 @@ class eo_sdist(sdist):
 
 def get_version():
     if os.path.exists('VERSION'):
-        version_file = open('VERSION', 'r')
-        version = version_file.read()
-        version_file.close()
-        return version
+        with open('VERSION', 'r') as v:
+            return v.read()
     if os.path.exists('.git'):
         p = subprocess.Popen(['git', 'describe', '--dirty', '--match=v*'], stdout=subprocess.PIPE)
         result = p.communicate()[0]
         if p.returncode == 0:
             version = result.split()[0][1:]
-            version = version.replace('-', '.')
+            version = version.replace(b'-', b'.')
             return version
     return '0'
 
