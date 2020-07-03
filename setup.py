@@ -1,12 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#  ceci n'est pas un test
-
-
-import glob
 import os
-import re
 import subprocess
 import sys
 
@@ -22,25 +17,38 @@ class eo_sdist(sdist):
         if os.path.exists('VERSION'):
             os.remove('VERSION')
         version = get_version()
-        version_file = open('VERSION', 'wb')
+        version_file = open('VERSION', 'w')
         version_file.write(version)
         version_file.close()
         sdist.run(self)
         if os.path.exists('VERSION'):
             os.remove('VERSION')
 
+
 def get_version():
+    '''Use the VERSION, if absent generates a version with git describe, if not
+       tag exists, take 0.0- and add the length of the commit log.
+    '''
     if os.path.exists('VERSION'):
         with open('VERSION', 'r') as v:
             return v.read()
     if os.path.exists('.git'):
-        p = subprocess.Popen(['git', 'describe', '--dirty', '--match=v*'], stdout=subprocess.PIPE)
+        p = subprocess.Popen(['git', 'describe', '--dirty=.dirty', '--match=v*'],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         result = p.communicate()[0]
         if p.returncode == 0:
-            version = result.split()[0][1:]
-            version = version.replace(b'-', b'.')
+            result = result.decode('ascii').strip()[1:]  # strip spaces/newlines and initial v
+            if '-' in result:  # not a tagged version
+                real_number, commit_count, commit_hash = result.split('-', 2)
+                version = '%s.post%s+%s' % (real_number, commit_count, commit_hash)
+            else:
+                version = result
             return version
-    return '0'
+        else:
+            return '0.0.post%s' % len(
+                    subprocess.check_output(
+                            ['git', 'rev-list', 'HEAD']).splitlines())
+    return '0.0'
 
 
 class compile_translations(Command):
