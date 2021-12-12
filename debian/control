@@ -2,13 +2,8 @@ Source: passerelle-imio-ts1-datasources
 Maintainer: Christophe Boulanger <christophe.boulanger@imio.be>
 Section: python
 Priority: optional
-Build-Depends: python-setuptools, python3-setuptools, python-all, python3-all, debhelper (>= 9), dh-python, python-django, python3-django
+Build-Depends: python3-setuptools, python3-all, debhelper (>= 9), dh-python, python3-django
 Standards-Version: 3.9.1
-
-Package: python-passerelle-imio-ts1-datasources
-Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}
-Description: Passerelle connector to ts1 datasources import and manage
 
 Package: python3-passerelle-imio-ts1-datasources
 Architecture: all
