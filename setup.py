@@ -101,7 +101,6 @@ setup(
         'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
     ],
     install_requires=['django>=2.2',],
     zip_safe=False,
